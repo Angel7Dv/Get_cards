@@ -10,7 +10,7 @@ soup = BeautifulSoup(content, 'lxml')
 
 
 tags = soup.select('i, b , audio')
-""" Extre las etiquetas que creeomes que tiene el contenido importante"""
+""" Extre las etiquetas que creemos que tiene el contenido importante"""
 
 urls_text = re.compile(r'(?<=src=").*?(?=")|(?<=>").*?(?="<)') #
 """ extrae la url de las etiquetas y el texto de una etiqueta"""
