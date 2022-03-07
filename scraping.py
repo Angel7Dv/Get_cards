@@ -8,47 +8,46 @@ website = "https://leagueoflegends.fandom.com/wiki/Pantheon/LoL/Audio"
 result = requests.get(website)
 content = result.text
 soup = BeautifulSoup(content, 'lxml')
-# print(soup.prettify()) # imprime todo el html de forma ordenada
+tags = soup.select('i, b , audio')
+
 
 # EXTRER LOS ELEMENTOS DE UNA WEB
 """ se recomienda buscar elementos en este orden = id > classname > tagname cssSelector > Xpath"""
 
-
-# tags = soup.select('i, b , audio')
 # tags = soup.findAll(re.compile(r'(i)'))
-tags = soup.find_all(['i', 'b', 'audio' ])
+# tags = soup.find_all(['i', 'b', 'audio' ])
+# r = re.compile('(?<=src=").*?(?=")')
+# audio='src="(.*?)"', text= '>"([^<>]*)"'
 
-r = re.compile('(?<=src=").*?(?=")')
+# content = open('cosa.txt', 'r')
 
-for line in tags:
-    text = line.get_text()
-    string = str(line)
-    url = r.findall(string)
-    
-    print(text, url)
-    # for i in line:
-    #     string = str(i)
-    #     data = r.findall(string)
-    #     print("link=",data , "text =")
-    #     # print(type(string))
+# for i in content:
+#     content = i
 
-        # audio = i["src"]
-    
-    # print(text )
+
+
+
+urls_text = re.compile(r'(?<=src=").*?(?=")|(?<=>)".*?"(?=<)') #
+
+
+result = urls_text.findall(str(tags))
+print(result)
+
+
+# for line in tags:
+#     #text = line.get_text()
+#     string = str(line)
+#     url = urls_text.findall(string)
+#     print(url)
 
 
 #print( text, audio , " \n")
 #for i in soup:
 
- 
-
 "obtener todas las etiquetas audio y i dentro de content"
 
 # audios = content.find_all('audio')
 
-
-
-
 # CREAR UN ARCHIVO CON LA INFORMACION
-# with open(f'{titulo}.txt', 'w') as file: 
-#     file.write(transcript)
+with open('phanteon.txt', 'w') as file: 
+    file.write(str(result))
