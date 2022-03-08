@@ -11,15 +11,15 @@ with open(f'{card_name}/{card_name}.json') as json_file:
 
 # Borra la url y formatea el texto español
 for i in data:
-    i["esp"] = re.sub('\W+', ' ', i["esp"]).lstrip()
+    i["text"] = re.sub('\W+', ' ', i["text"]).lstrip().lower()
     i["audio"] = f'[sound:{i["audio"]}]'
     del i["url"]
 """Falta agregar los nombres de los archivos de audio"""
 
 
-# Crea el archivo CSV
+#Crea el archivo CSV
 csv_file = f'{card_name}/{card_name}.csv'
-csv_columns = ['text', 'audio', 'esp']
+csv_columns = ['audio', 'text', 'esp']
 try:
     with open(csv_file, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=csv_columns)

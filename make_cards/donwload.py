@@ -36,4 +36,7 @@ with open(f'{card_name}/{card_name}.json', "w") as outfile:
     json.dump(new_data, outfile)
 
 print("Completado")
-            
+
+# recuerda guardar los archivos en 
+#   C:\Users\user\AppData\Roaming\Anki2\Usuario 1\collection.media 
+# para usarlos en el deck
