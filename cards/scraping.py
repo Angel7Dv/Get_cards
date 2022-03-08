@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from googletrans import Translator
+import json
+
+""" Obtiene una url y estrae los audios y los texto de las etiquetas que creemos que contienen los audios
+    Crea un archivo Json a partir de esto
+"""
 
 # leer cualquier web
 website = "https://leagueoflegends.fandom.com/wiki/Pantheon/LoL/Audio"
@@ -17,32 +21,25 @@ get_data = re.compile(r'(?<=src=").*?(?=")|(?<=>").*?(?="<)') #
 """ extrae la url de las etiquetas y el texto de una etiqueta"""
 resultado = get_data.findall(str(tags))
 
-
-# Traduccion de textos
-traductor = Translator()
-
-
 # Agregamos los textos y audios a un dict
 lista = []
 objeto = {}
 for i in resultado:
+    """ si es una url agrega 1 elemento a un dic luego agrega ese dict a la lista"""
     if i.startswith("http") == True:
-        """ si es una url agrega 1 elemento a un dic luego agrega ese dict a la lista"""
         objeto = {"url": i}
     else:
-        
         # text = re.sub(r'[^\w]', ' ', i.lower())
         # text = " ".join(re.split(r"\s+", text))
         objeto["text"] = i
-        objeto["esp"] = traductor.translate("cosa")
-        print(objeto["esp"])
-        # lista.insert(len(lista), objeto)
-        # objeto.clear
+        lista.insert(len(lista), objeto) 
+        objeto.clear
 
 
-    
 
+card_name = "Pantheon"
 
 # CREAR UN ARCHIVO CON LA INFORMACION
-# with open('phanteon.txt', 'w') as file: 
-#     file.write(str(lista))
+with open(f'{card_name}/{card_name}.json', "w") as outfile:
+    json.dump(lista, outfile)
+    
