@@ -1,0 +1,12 @@
+
+- [x] Extraer datos de la pagina 
+- [x] traducir los textos
+- [x] Crear una base de datos con los datos extraidos o json
+    - textos 
+        - español
+        - ingles
+    - links audios
+    - audios descargados
+- [x] Descargar los archivos de audio y almacenarlos en una carpeta con los nombres de orden de la lista de textos
+- [ ] descargar todos los audios como archivo zip
+- [ ] Crear targetas con los archivos y el contenido de la base de datos o carpeta descargada

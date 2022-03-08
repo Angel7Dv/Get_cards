@@ -14,7 +14,7 @@ with open(f'{card_name}/{card_name}.json') as json_file:
 es = GoogleTranslator(source='auto', target='es')
 new_object = []
 for i in data:
-    i["esp"] = es.translate(i["text"]) 
+    i["esp"] = es.translate(i["text"])
     new_object.insert(len(new_object), i)
     print(i)
 
