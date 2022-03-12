@@ -19,7 +19,7 @@ def make_cvs(card_name):
 
     #Crea el archivo CSV
     csv_file = f'cards/{card_name}/{card_name}.csv'
-    csv_columns = ['audio', 'text', 'esp']
+    csv_columns = ['audio', 'text', 'es']
     try:
         with open(csv_file, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=csv_columns)

@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -23,13 +24,16 @@ def download(card_name):
 
 
             print(f"Downloading File {name}")
-            download = req.get(iten["url"])
-            if download.status_code == 200: # si el status es 200 comienza la descarga
-                with open(f'cards/{card_name}/{name}', 'wb') as f:
-                    f.write(download.content)
-                    print(f"Success Download File {name}")
+            if os.path.exists(f'cards/{card_name}/{name}'):
+                pass
             else:
-                print(f"Download Failed For File {name}")
+                download = req.get(iten["url"])
+                if download.status_code == 200: # si el status es 200 comienza la descarga
+                    with open(f'cards/{card_name}/{name}', 'wb') as f:
+                        f.write(download.content)
+                        print(f"Success Download File {name}")
+                else:
+                    print(f"Download Failed For File {name}")
 
             iten["audio"] = name
             new_data.insert(len(new_data), iten)
