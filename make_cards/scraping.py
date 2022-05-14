@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import re
 import json
 
-""" Obtiene una url y estrae los audios y los texto de las etiquetas que creemos que contienen los audios
+""" Obtiene una url y extrae los audios y los texto de las etiquetas que creemos que contienen los audios
     Crea un archivo Json a partir de esto
 """
 
